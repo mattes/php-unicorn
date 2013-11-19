@@ -11,7 +11,7 @@ RUN sed -i -e 's/;daemonize = yes/daemonize = no/' /etc/php5/fpm/php-fpm.conf
 
 # ip redirecting setup
 RUN apt-get --force-yes -y install rinetd
-ADD rinetd.conf.tpl /etc/rinetd.conf.tpl
+RUN cp /etc/rinetd.conf /etc/rinetd.conf.backup
 
 # add start script
 ADD start.sh /usr/local/bin/start.sh

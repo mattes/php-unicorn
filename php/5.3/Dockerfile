@@ -15,6 +15,15 @@ ADD php-fpm-www.conf /etc/php5/fpm/pool.d/www.conf
 
 RUN sed -i -e 's/;daemonize = yes/daemonize = no/' /etc/php5/fpm/php-fpm.conf
 
+# ip redirecting setup
+RUN apt-get --force-yes -y install rinetd
+RUN cp /etc/rinetd.conf /etc/rinetd.conf.backup
+
+# add start script
+ADD start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+
 # bind volumes
 VOLUME ["/www"]
 
@@ -22,4 +31,4 @@ VOLUME ["/www"]
 EXPOSE 20053
 
 # run command
-CMD ["php5-fpm"]
+CMD ["start.sh"]
