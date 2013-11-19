@@ -23,7 +23,7 @@ if [[ ! -e $path ]]; then
 fi
 
 # replace / with - to create image name
-image_name=${path/\//-}
+image_name="unicorn-"${path/\//-}
 
 # commands ...
 if [[ $cmd == "build" ]]; then

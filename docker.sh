@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 
-docker_user="mattes" # if you dont want to use the default images
-www_path=$(pwd)/www # where all your virtual hosts are
-host_http_port="80" # make this port visible to your host machine
-host_db_port="3306" # make this port visible to your host machine
+docker_user="mattes"  # if you dont want to use the default images
+www_path=$(pwd)/www   # where all your virtual hosts are
+host_http_port="80"   # make this port visible to your host machine
+host_db_port="3306"   # make this port visible to your host machine
+which_db="mysql"      # name of database service
 
 # ------------
 
@@ -37,7 +38,7 @@ if [[ ! -e $path ]]; then
 fi
 
 # replace / with - to create image name
-image_name=${path/\//-}
+image_name="unicorn-"${path/\//-}
 
 # set defaults
 expose_ports=""
@@ -49,7 +50,7 @@ if [[ $path =~ "php" ]]; then
   php_fpm_port=$(echo $path | sed -e 's/[^0-9]*//g')
   expose_ports="-expose $php_fpm_port"
   share_dirs="-v $www_path:/www"
-  link_containers="-link db-mysql:db"
+  link_containers="-link db-$which_db:db"
   
 elif [[ $path =~ "http" ]]; then
   expose_ports="-p $host_http_port:80"
