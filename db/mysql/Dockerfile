@@ -11,8 +11,6 @@ RUN mysql_install_db --user=mysql
 # allow remote access for user root, delete database "test"
 RUN /etc/init.d/mysql start && mysql -S /var/run/mysqld/mysqld.sock -u root -e "DELETE FROM mysql.user WHERE User = ''; UPDATE mysql.user SET Password=PASSWORD('root') WHERE User = 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root'; DROP DATABASE IF EXISTS test; FLUSH PRIVILEGES;"; /etc/init.d/mysql stop
 
-ADD force-tcp.cnf /etc/mysql/conf.d/force-tcp.cnf
-
 # expose ports
 EXPOSE 3306
 
