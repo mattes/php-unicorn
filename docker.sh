@@ -52,12 +52,11 @@ if [[ $path =~ "php" ]]; then
   expose_ports="-expose $php_fpm_port"
   share_dirs="-v $www_path:/www"
   link_containers="-link unicorn-db-$which_db:db"
-  pre_create_check="docker ps | grep unicorn-db-$which_db && printf \"Error: start unicorn-db-$which_db first\!\" && exit 2"
   
 elif [[ $path =~ "http" ]]; then
   expose_ports="-p $host_http_port:80"
   share_dirs="-v $www_path:/www"
-  link_containers="-link unicorn-php-5.3:php-5.3 -link unicorn-php-5.4:php-5.4 -link unicorn-php-5.5:php-5.5"
+  link_containers="-link unicorn-php-5.3:php_5_3 -link unicorn-php-5.4:php_5_4 -link unicorn-php-5.5:php_5_5"
 
 elif [[ $path =~ "db" ]]; then
   expose_ports="-p $host_db_port:3306"
