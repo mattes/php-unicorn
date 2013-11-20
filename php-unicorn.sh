@@ -122,10 +122,10 @@ else
     docker rm $image_name
 
   elif [[ $cmd == "stop" ]]; then
-    docker stop $image_name
+    docker stop -t=5 $image_name
 
   elif [[ $cmd == "start" ]]; then
-    docker start $image_name || $(basename $0) run $image_name
+    docker start $image_name &>- || $(basename $0) run $image_name
 
   elif [[ $cmd == "restart" ]]; then
     $(basename $0) stop $image_name
