@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
 function usage {
-  printf "Usage: <path> <cmd>\n"
-  printf "\nCommands:\n"
+  printf "Usage: <cmd> <path>\n"
+  printf "\n"
+  printf "Commands:\n"
   printf "  build         Build Dockerfile\n"
   printf "  build-clean   Delete existing image and build Dockerfile\n"
-  printf "\nExamples:\n"
-  printf "  ./dockerfile.sh php/5.4 build\n"
-  printf "  ./dockerfile.sh http/apache build-clean\n\n"
+  printf "\n"
+  printf "Examples:\n"
+  printf "  ./dockerfile.sh build php/5.4\n"
+  printf "  ./dockerfile.sh build-clean http/apache\n"
+  printf "\n"
 }
 
-path=$1
-cmd=$2
+cmd=$1
+path=$2
 docker_user="mattes"
 
 if [[ $path == "" || $cmd == "" ]]; then
