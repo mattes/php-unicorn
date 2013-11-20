@@ -46,7 +46,7 @@ elif [[ $cmd == "rm" ]]; then
   docker rmi $docker_user/$image_name
 
 elif [[ $cmd == "build-clean" ]]; then
-  docker rmi $docker_user/$image_name &>-
+  docker rmi $docker_user/$image_name >/dev/null 2>&1
   docker build -rm --no-cache -t $docker_user/$image_name $(pwd)/$path
 
 else

@@ -118,14 +118,14 @@ else
       /bin/bash
 
   elif [[ $cmd == "rm" ]]; then
-    docker kill $image_name &>-
+    docker kill $image_name >/dev/null 2>&1
     docker rm $image_name
 
   elif [[ $cmd == "stop" ]]; then
     docker stop -t=5 $image_name
 
   elif [[ $cmd == "start" ]]; then
-    docker start $image_name &>- || $(basename $0) run $image_name
+    docker start $image_name 2>/dev/null || $(basename $0) run $image_name
 
   elif [[ $cmd == "restart" ]]; then
     $(basename $0) stop $image_name
