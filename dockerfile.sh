@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function usage {
-  printf "Usage: dockerfile.sh <path> <cmd>\n"
+  printf "Usage: <path> <cmd>\n"
   printf "\nCommands:\n"
   printf "  build         Build Dockerfile\n"
   printf "  build-clean   Delete existing image and build Dockerfile\n"
