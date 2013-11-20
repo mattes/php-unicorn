@@ -21,6 +21,10 @@ RUN a2enconf servername.conf
 ADD php-macros.conf /etc/apache2/conf-available/php-macros.conf
 RUN a2enconf php-macros.conf
 
+# add start script
+ADD start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # bind volumes
 VOLUME ["/www"]
 
@@ -28,4 +32,4 @@ VOLUME ["/www"]
 EXPOSE 80
 
 # run command
-CMD ["apachectl", "-D", "FOREGROUND"]
+CMD ["start.sh"]
