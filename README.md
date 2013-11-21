@@ -1,10 +1,7 @@
 PHP Development Environment
 ===========================
 
-[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) 
-+ [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) 
-+ [Database](https://github.com/mattes/php-unicorn/tree/master/db)
-... with [Docker](http://www.docker.io)
+[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db) ... with [Docker](http://www.docker.io)
 
 Run every PHP version in a docker container and easily switch PHP
 versions within your webserver.
@@ -96,4 +93,3 @@ Further Readings
  * https://www.google.com/search?q=public+wildcard+domain+127.0.0.1
  * http://stackoverflow.com/questions/1562954/public-wildcard-domain-name-to-resolve-to-127-0-0-1
 
- 
