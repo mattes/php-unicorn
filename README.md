@@ -1,7 +1,7 @@
 PHP Development Environment
 ===========================
 
-[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db) ... with [Docker](http://www.docker.io)
+__[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db) ... with [Docker](http://www.docker.io)__
 
 Run every PHP version in a docker container and easily switch PHP
 versions within your webserver.
@@ -13,7 +13,7 @@ Apache Example
   Use PHP-5.4 /www/%{SERVER_NAME}
 </VirtualHost>
 ```
-__nginx__ @todo
+nginx @todo
 
 
 Installation
