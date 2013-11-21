@@ -29,7 +29,7 @@ cd php-unicorn
 ln -s $(pwd)/php-unicorn.sh /usr/local/bin/puni
 
 # set UNICORN_WWW_PATH environment variable (add this line to your dotfiles)
-# export UNICORN_WWW_PATH=$(pwd)/www
+export UNICORN_WWW_PATH=$(pwd)/www
 
 # download pre-build unicorn docker images
 docker pull mattes/unicorn-php-5.3
