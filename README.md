@@ -81,7 +81,7 @@ plain docker commands yourself.
 Next steps
 ----------
 
- * Apache: Learn how the ``Use PHP-5.x`` macros work. See [php-macros.conf](https://github.com/mattes/php-unicorn/blob/master/http/apache/php-macros.conf).
+ * Apache: Learn how the ``Use PHP-5.x`` macros work. See [php-macros.conf](https://github.com/mattes/php-unicorn/blob/master/http/apache/php-macros.conf) and [start.sh](https://github.com/mattes/php-unicorn/blob/master/http/apache/start.sh).
  * Apache: Customize a VirtualHost with a new configuration file ```IncludeOptional /www/*.a2.conf```. See [001-multi-virtualhosts.conf](https://github.com/mattes/php-unicorn/blob/master/http/apache/001-multi-virtualhosts.conf).
 
 
