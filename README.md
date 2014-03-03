@@ -1,7 +1,7 @@
 PHP Development Environment
 ===========================
 
-__[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db)___
+__[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db)__
 
 
 Run different PHP versions in [docker](http://www.docker.io) containers and 
