@@ -59,7 +59,7 @@ if [[ ! $image_name ]]; then
   # commands without image name ...
   order=( "db-$which_db" "php-5.3" "php-5.4" "php-5.5" "http-apache" )
   for container in "${order[@]}"; do
-    $(basename $0) $cmd $container
+    . $(basename $0) $cmd $container
   done
 
 else
@@ -125,11 +125,11 @@ else
     docker stop -t=5 $image_name
 
   elif [[ $cmd == "start" ]]; then
-    docker start $image_name 2>/dev/null || $(basename $0) run $image_name
+    docker start $image_name 2>/dev/null || . $(basename $0) run $image_name
 
   elif [[ $cmd == "restart" ]]; then
-    $(basename $0) stop $image_name
-    $(basename $0) start $image_name
+    . $(basename $0) stop $image_name
+    . $(basename $0) start $image_name
 
   else
     printf "Error: unknown command!\n\n" && usage && exit 1
