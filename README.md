@@ -37,9 +37,17 @@ open http://localhost:8080 # if this doesn't work, check log directory for error
 Usage
 =====
 ```bash
+# suspend and start
+vagrant suspend
 vagrant up
+
+# halt and start
 vagrant halt
-vagrant reload --provision # when Vagrantfile is updated
+vagrant up
+vagrant provision
+
+# when Vagrantfile is updated
+vagrant reload --provision
 ```
 
 Build Custom Docker Containers
