@@ -1,10 +1,12 @@
 PHP Development Environment
 ===========================
 
-__[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db) ... with [Docker](http://www.docker.io)__
+__[PHP (PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db)___
 
-Run every PHP version in a docker container and easily switch PHP
-versions within your webserver.
+
+Run different PHP versions in [docker](http://www.docker.io) containers and 
+easily switch them within your webserver. [Vagrant](http://www.vagrantup.com) does all the container
+configuration for you.
 
 Apache Example
 ```
@@ -16,66 +18,35 @@ Apache Example
 nginx @todo
 
 
+Prerequisites
+=============
+
+ * [VirtualBox](https://www.virtualbox.org)
+ * [Vagrant](http://www.vagrantup.com)
+
 Installation
 ============
 
 ```bash
-# clone repository 
-cd ~/Developer
 git clone https://github.com/mattes/php-unicorn
 cd php-unicorn
-
-# create symlink for the utility helper
-ln -s $(pwd)/php-unicorn.sh /usr/local/bin/puni
-
-# set UNICORN_WWW_PATH environment variable (add this line to your dotfiles)
-export UNICORN_WWW_PATH=$(pwd)/www
-
-# download pre-build unicorn docker images
-docker pull mattes/unicorn-php-5.3
-docker pull mattes/unicorn-php-5.4
-docker pull mattes/unicorn-php-5.5
-docker pull mattes/unicorn-http-apache
-docker pull mattes/unicorn-db-mysql
-
-# ... or build them yourself with the help of ./dockerfile.sh
+vagrant up
+open http://localhost:8080 # if this doesn't work, check log directory for errors
 ```
-
-__Vagrant/ VirtualBox Users__: Please modify your docker's Vagrantfile ...
-
-```ruby
-...
-Vagrant::VERSION >= "1.1.0" and Vagrant.configure("2") do |config|
-  ...
-  # add the following line to forward ports 
-  config.vm.network :forwarded_port, :host => 8080, :guest => 80
-  config.vm.network :forwarded_port, :host => 33066, :guest => 3306
-
-  # add the following line to share your virtual hosts files
-  # from your local machine with VirtualBox (edit first path accordingly)
-  config.vm.synced_folder "/Users/mattes/Developer/php-unicorn/www", "/www"
-  ...
-```
-
 
 
 Usage
 =====
 ```bash
-# start containers
-puni start
-# now open http://localhost or http://localhost:8080 depending on your setup
-
-# stop/ restart
-puni stop
-puni restart http-apache
-
-# see more commands
-puni
+vagrant up
+vagrant halt
+vagrant reload --provision # when Vagrantfile is updated
 ```
 
-php-unicorn.sh/ puni is just a small helper. You can of course call all 
-plain docker commands yourself.
+Build Custom Docker Containers
+==============================
+
+You can build your own docker containers. Check the ``./dockerfile.sh`` helper.
 
 
 Next steps
