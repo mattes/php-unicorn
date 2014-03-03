@@ -18,14 +18,13 @@ Apache Example
 nginx @todo
 
 
-Prerequisites
-=============
+Installation
+============
+
+__Prerequisites__
 
  * [VirtualBox](https://www.virtualbox.org)
  * [Vagrant](http://www.vagrantup.com)
-
-Installation
-============
 
 ```bash
 git clone https://github.com/mattes/php-unicorn
