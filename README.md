@@ -1,12 +1,11 @@
 PHP Development Environment
 ===========================
 
-__[Multi PHP versions (with PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db)__
+__[Multiple PHP versions (with PHP-FPM)](https://github.com/mattes/php-unicorn/tree/master/php) + [Webserver](https://github.com/mattes/php-unicorn/tree/master/http) + [Database](https://github.com/mattes/php-unicorn/tree/master/db)__
 
 
-Run different PHP versions in [docker](http://www.docker.io) containers and 
-easily switch them within your webserver. [Vagrant](http://www.vagrantup.com) does all the container
-configuration for you.
+Run PHP versions (5.3, 5.4, 5.5) with PHP-FPM as [docker containers](http://www.docker.io)
+and easily switch PHP versions within your webserver.
 
 Apache Example
 ```
@@ -18,25 +17,52 @@ Apache Example
 nginx @todo
 
 
-Installation
-============
+Docker Container Overview
+=========================
 
-__Prerequisites__
+```
+                                +--- /www data ---------+
+                                |                       |
+                              mount                   mount    
+                                |                       |
+                                v                       v
+DB (i.e. MySQL) <-link-> PHP 5.3 (PHP-FPM) <-link-> Webserver (i.e. Apache)
+                         PHP 5.4 (PHP-FPM)
+                         PHP 5.5 (PHP-FPM) 
+```                          
 
- * [VirtualBox](https://www.virtualbox.org)
- * [Vagrant](http://www.vagrantup.com)
+
+PHP containers are linked to DB containers, so PHP is able to do ``mysql_connect('127.0.0.1', ..)``. Behind the scenes there is some magic ([rinetd](http://www.lenzg.net/rinetd/rinetd.html)) which maps all requests to ``127.0.0.1:3306`` to the actual IP of the DB container. Of course, the Webserver is linked to the PHP containers as well. 
+
+Your www data directory is mounted to both, the PHP containers and the Webserver container, under ``/www``.
+
+
+Setup
+=====
+
+### Linux
+
+__Prerequisites__: [Docker](http://www.docker.io)
 
 ```bash
 git clone https://github.com/mattes/php-unicorn
 cd php-unicorn
-vagrant up
-open http://localhost:8080 # if this doesn't work, check log directory for errors
+./php-unicorn.sh start
+open http://localhost:8080
 ```
 
 
-Usage
-=====
+### Mac OS X with Vagrant
+
+__Prerequisites__: [VirtualBox](https://www.virtualbox.org), [Vagrant](http://www.vagrantup.com)
+
 ```bash
+# install
+git clone https://github.com/mattes/php-unicorn
+cd php-unicorn
+vagrant up
+open http://localhost:8080
+
 # suspend and start
 vagrant suspend
 vagrant up
@@ -47,8 +73,28 @@ vagrant up
 vagrant provision
 
 # when Vagrantfile is updated
-vagrant reload --provision
+vagrant reload --provision # buggy atm, delete container first (vagrant ssh, docker stop 123, docker kill 123)
 ```
+
+
+### Mac OS X with Boot2docker
+
+__Prerequisites__: [VirtualBox](https://www.virtualbox.org), [boot2docker](http://boot2docker.github.io)
+ 
+```bash
+git clone https://github.com/mattes/php-unicorn
+cd php-unicorn
+boot2docker up
+./php-unicorn.sh start
+open http://localhost:8080
+```
+
+__NOTE__: Boot2docker doesn't work, yet. They still need to figure out how to mount shared directories.
+ * https://github.com/boot2docker/boot2docker/pull/154
+ * https://github.com/boot2docker/boot2docker/pull/198
+ * https://github.com/boot2docker/boot2docker-cli/pull/42
+
+
 
 Build Custom Docker Containers
 ==============================
