@@ -21,18 +21,20 @@ Docker Container Overview
 =========================
 
 ```
-                                +--- /www data ---------+
-                                |                       |
-                              mount                   mount    
-                                |                       |
-                                v                       v
-DB (i.e. MySQL) <-link-> PHP 5.3 (PHP-FPM) <-link-> Webserver (i.e. Apache)
-                         PHP 5.4 (PHP-FPM)
-                         PHP 5.5 (PHP-FPM) 
+                                +---------- /www data ------------+
+                                |                                 |
+                              mount                             mount    
+                                |                                 |
+                                v                                 v
+DB (i.e. MySQL 3306) <-link-> PHP 5.3 (PHP-FPM 20053) <-link-> Webserver (i.e. Apache 80)
+                              PHP 5.4 (PHP-FPM 20054)
+                              PHP 5.5 (PHP-FPM 20055) 
 ```                          
 
 
-PHP containers are linked to DB containers, so PHP is able to do ``mysql_connect('127.0.0.1', ..)``. Behind the scenes there is some magic ([rinetd](http://www.lenzg.net/rinetd/rinetd.html)) which maps all requests to ``127.0.0.1:3306`` to the actual IP of the DB container. Of course, the Webserver is linked to the PHP containers as well. 
+PHP containers are linked to DB containers, so PHP is able to do ``mysql_connect('127.0.0.1', ..)``. 
+Behind the scenes there is some magic ([rinetd](http://www.lenzg.net/rinetd/rinetd.html)) which maps all requests to ``127.0.0.1:3306`` to the actual IP of the DB container. 
+Of course, the Webserver is linked to the PHP containers as well. 
 
 Your www data directory is mounted to both, the PHP containers and the Webserver container, under ``/www``.
 
@@ -50,6 +52,15 @@ cd php-unicorn
 ./php-unicorn.sh start
 open http://localhost:8080
 ```
+
+Service | Host | Exposed Docker Container
+--------|------|-------------------------
+Apache  | 8080 | 80
+MySQL   | 3306 | 3306
+PHP 5.3 | -    | 20053          
+PHP 5.4 | -    | 20054          
+PHP 5.5 | -    | 20055     
+
 
 
 ### Mac OS X with Vagrant
@@ -75,6 +86,14 @@ vagrant provision
 # when Vagrantfile is updated
 vagrant reload --provision # buggy atm, delete container first (vagrant ssh, docker stop 123, docker kill 123)
 ```
+
+Service | Host | Virtual Machine | Exposed Docker Container
+--------|------|-----------------|-------------------------
+Apache  | 8080 | 8080            | 80
+MySQL   | 3306 | 3306            | 3306
+PHP 5.3 | -    | -               | 20053          
+PHP 5.4 | -    | -               | 20054          
+PHP 5.5 | -    | -               | 20055          
 
 
 ### Mac OS X with Boot2docker
