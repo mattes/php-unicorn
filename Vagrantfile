@@ -8,7 +8,7 @@ http_host_ports = {}
 http_host_ports["unicorn-http-apache"] = 8080
 
 db_host_ports = {}
-db_host_ports["unicorn-db-mysql"] = 33060
+db_host_ports["unicorn-db-mysql"] = 3306
 
 www_path = Dir.pwd + "/www"
 log_path = Dir.pwd + "/log"
