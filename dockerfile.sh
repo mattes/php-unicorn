@@ -40,14 +40,14 @@ fi
 
 # commands ...
 if [[ $cmd == "build" ]]; then
-  docker build -rm -t $docker_user/$image_name $(pwd)/$path
+  docker build --rm -t $docker_user/$image_name $(pwd)/$path
 
 elif [[ $cmd == "rm" ]]; then
   docker rmi $docker_user/$image_name
 
 elif [[ $cmd == "build-clean" ]]; then
   docker rmi $docker_user/$image_name >/dev/null 2>&1
-  docker build -rm --no-cache -t $docker_user/$image_name $(pwd)/$path
+  docker build --rm --no-cache -t $docker_user/$image_name $(pwd)/$path
 
 else
   printf "Error: unknown command!\n\n" && usage && exit 1
