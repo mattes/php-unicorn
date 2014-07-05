@@ -52,7 +52,7 @@ __Prerequisites__: [VirtualBox](https://www.virtualbox.org), [boot2docker](http:
 git clone https://github.com/mattes/php-unicorn
 cd php-unicorn
 boot2docker up
-fig up
+fig up # see fig.yml
 open http://<boot2docker-ip>:8080
 ```
 
@@ -68,13 +68,11 @@ PHP 5.5 | -    | 20055
 
 ### Linux
 
-__Prerequisites__: [Docker](http://www.docker.io)
+__Prerequisites__: [Docker](http://www.docker.io), [fig](http://orchardup.github.io/fig)
 
 ```bash
 # see above
 ```
-
-
 
 
 
