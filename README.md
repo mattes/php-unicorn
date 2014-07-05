@@ -42,15 +42,18 @@ Your www data directory is mounted to both, the PHP containers and the Webserver
 Setup
 =====
 
-### Linux
+### Mac OS X with Boot2docker
 
-__Prerequisites__: [Docker](http://www.docker.io)
+__Prerequisites__: [VirtualBox](https://www.virtualbox.org), [boot2docker](http://boot2docker.github.io),
+[boot2docker.iso with VirtualBox Guest Additions](https://medium.com/boot2docker-lightweight-linux-for-docker/boot2docker-together-with-virtualbox-guest-additions-da1e3ab2465c),
+[fig](http://orchardup.github.io/fig)
 
 ```bash
 git clone https://github.com/mattes/php-unicorn
 cd php-unicorn
-./php-unicorn.sh start
-open http://localhost:8080
+boot2docker up
+fig up
+open http://<boot2docker-ip>:8080
 ```
 
 Service | Host | Exposed Docker Container
@@ -63,55 +66,15 @@ PHP 5.5 | -    | 20055
 
 
 
-### Mac OS X with Vagrant
+### Linux
 
-__Prerequisites__: [VirtualBox](https://www.virtualbox.org), [Vagrant](http://www.vagrantup.com)
+__Prerequisites__: [Docker](http://www.docker.io)
 
 ```bash
-# install
-git clone https://github.com/mattes/php-unicorn
-cd php-unicorn
-vagrant up
-open http://localhost:8080
-
-# suspend and start
-vagrant suspend
-vagrant up
-
-# halt and start
-vagrant halt
-vagrant up
-vagrant provision
-
-# when Vagrantfile is updated
-vagrant reload --provision # buggy atm, delete container first (vagrant ssh, docker stop 123, docker kill 123)
+# see above
 ```
 
-Service | Host | Virtual Machine | Exposed Docker Container
---------|------|-----------------|-------------------------
-Apache  | 8080 | 8080            | 80
-MySQL   | 3306 | 3306            | 3306
-PHP 5.3 | -    | -               | 20053          
-PHP 5.4 | -    | -               | 20054          
-PHP 5.5 | -    | -               | 20055          
 
-
-### Mac OS X with Boot2docker
-
-__Prerequisites__: [VirtualBox](https://www.virtualbox.org), [boot2docker](http://boot2docker.github.io)
- 
-```bash
-git clone https://github.com/mattes/php-unicorn
-cd php-unicorn
-boot2docker up
-./php-unicorn.sh start
-open http://localhost:8080
-```
-
-__NOTE__: Boot2docker doesn't work, yet. They still need to figure out how to mount shared directories.
- * https://github.com/boot2docker/boot2docker/pull/154
- * https://github.com/boot2docker/boot2docker/pull/198
- * https://github.com/boot2docker/boot2docker-cli/pull/42
 
 
 
