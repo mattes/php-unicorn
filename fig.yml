@@ -1,0 +1,36 @@
+db:
+  image: mattes/unicorn-db-mysql
+  ports:
+    - "3306:3306"
+
+php53:
+  image: mattes/unicorn-php-5.3
+  volumes:
+    - ./www:/www
+  links:
+    - db
+
+php54:
+  image: mattes/unicorn-php-5.4
+  volumes:
+    - ./www:/www
+  links:
+    - db
+
+php55:
+  image: mattes/unicorn-php-5.5
+  volumes:
+    - ./www:/www
+  links:
+    - db
+
+web:
+  image: mattes/unicorn-http-apache
+  ports:
+    - "8080:80"
+  volumes:
+    - ./www:/www
+  links:
+    - php53:php_5_3
+    - php54:php_5_4
+    - php55:php_5_5
