@@ -61,10 +61,13 @@ Service | Host | Exposed Docker Container
 --------|------|-------------------------
 Apache  | 8080 | 80
 MySQL   | 3306 | 3306
+FTP     | 2121 | 2121
 PHP 5.3 | -    | 20053          
 PHP 5.4 | -    | 20054          
 PHP 5.5 | -    | 20055     
 
+By default "dangerftp" is started. Type any path under ``wwww`` as username,
+to make this the entry path for the FTP session. Field password is ignored.
 
 
 ### Linux

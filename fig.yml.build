@@ -34,3 +34,12 @@ web:
     - php53:php_5_3
     - php54:php_5_4
     - php55:php_5_5
+
+ftp:
+  image: mattes/unicorn-ftp-dangerftp
+  ports: 
+    - "2121:2121"
+  volumes:
+    - ./www:/www
+
+
