@@ -52,6 +52,7 @@ __Prerequisites__: [VirtualBox](https://www.virtualbox.org), [boot2docker](http:
 git clone https://github.com/mattes/php-unicorn
 cd php-unicorn
 boot2docker up
+./build-fig.sh ./www
 fig up # see fig.yml
 open http://<boot2docker-ip>:8080
 ```
