@@ -9,6 +9,7 @@ php53:
     - ./www:/www
   links:
     - db
+    - ftp
 
 php54:
   image: mattes/unicorn-php-5.4
@@ -16,6 +17,7 @@ php54:
     - ./www:/www
   links:
     - db
+    - ftp
 
 php55:
   image: mattes/unicorn-php-5.5
@@ -23,6 +25,7 @@ php55:
     - ./www:/www
   links:
     - db
+    - ftp
 
 web:
   image: mattes/unicorn-http-apache
@@ -38,7 +41,7 @@ web:
 ftp:
   image: mattes/unicorn-ftp-dangerftp
   ports: 
-    - "2121:2121"
+    - "2121:21"
   volumes:
     - ./www:/www
 

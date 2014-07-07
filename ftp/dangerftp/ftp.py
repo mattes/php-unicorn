@@ -18,7 +18,7 @@ def main():
 
     handler = FTPHandler
     handler.authorizer = authorizer
-    server = FTPServer(('*', 2121), handler)
+    server = FTPServer(('*', 21), handler)
     server.serve_forever()
 
 if __name__ == "__main__":

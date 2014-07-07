@@ -34,7 +34,7 @@ DB (i.e. MySQL 3306) <-link-> PHP 5.3 (PHP-FPM 20053) <-link-> Webserver (i.e. A
 
 PHP containers are linked to DB containers, so PHP is able to do ``mysql_connect('127.0.0.1', ..)``. 
 Behind the scenes there is some magic ([rinetd](http://www.lenzg.net/rinetd/rinetd.html)) which maps all requests to ``127.0.0.1:3306`` to the actual IP of the DB container. 
-Of course, the Webserver is linked to the PHP containers as well. 
+``127.0.0.1:21`` is mapped to the actual FTP container. Of course, the Webserver is linked to the PHP containers as well. 
 
 Your www data directory is mounted to both, the PHP containers and the Webserver container, under ``/www``.
 

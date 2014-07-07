@@ -11,6 +11,6 @@ RUN chmod +x /ftp.py
 ENV FTP_ROOT /www
 VOLUME ["/www"]
 
-EXPOSE 2121
+EXPOSE 21
 
 CMD ["./ftp.py"]
